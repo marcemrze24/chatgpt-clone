@@ -1,5 +1,6 @@
 import React from "react";
-import { AiOutlineSend, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineSend} from "react-icons/ai";
+import styles from "./Main.module.css"
 
 function Main() {
     return (

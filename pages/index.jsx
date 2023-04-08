@@ -1,10 +1,10 @@
 import Main from "../components/main/Main";
 import Sidebar from "../components/sidebar/Sidebar";
-import styles from "./index.module.css";
+import styles from "./Index.module.css";
 
 function HomePage() {
     return (
-        <main>
+        <main className={styles.main}>
             <Sidebar />
             <Main />
         </main>
