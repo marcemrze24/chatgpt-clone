@@ -1,22 +1,74 @@
+import {
+    Box,
+    Button,
+    List,
+    ListIcon,
+    ListItem,
+    Show,
+    Text,
+} from "@chakra-ui/react";
 import React from "react";
-import styles from "./Sidebar.module.css"
-import {AiOutlinePlus} from "react-icons/ai"
+import { AiOutlinePlus } from "react-icons/ai";
+import { BsChatLeft } from "react-icons/bs";
 
-function Sidebar() {
-    return <aside className={styles.sidebar}>
-        <button className={styles.sidebar__btn}>
-            <AiOutlinePlus />
-            <span>New chat</span>
-        </button>
-        <ul className={styles.sidebar__history}>
-            <li className={styles.history__item}>
-                <p>Oh hi</p>
-            </li>
-        </ul>
-        <div className={styles.sidebar__bottom}>
-            <p>Made by marcemrze24</p>
-        </div>
-    </aside>
+function Sidebar(props) {
+    const { newChatHandler, previousChats, currentChatsHandler } = props;
+    const previousTitles = Array.from(
+        new Set(previousChats?.map((previousChat) => previousChat.title))
+    );
+    const displayPreviousTitles = previousTitles?.map((previousTitle) => (
+        <ListItem
+            display="flex"
+            justifyContent="start"
+            alignItems="center"
+            borderRadius={4}
+            px={4}
+            py={2}
+            key={previousTitle}
+            _hover={{
+                backgroundColor: "whiteAlpha.300",
+                cursor: "pointer",
+            }}
+            _active={{
+                backgroundColor: "whiteAlpha.400",
+            }}
+            onClick={() => {
+                currentChatsHandler(previousTitle);
+            }}
+        >
+            <ListIcon as={BsChatLeft} />
+            <Text marginStart={2}>{previousTitle}</Text>
+        </ListItem>
+    ));
+    return (
+        <>
+            <Button
+                onClick={newChatHandler}
+                rightIcon={<AiOutlinePlus />}
+                colorScheme="gray"
+                w="full"
+                iconSpacing="auto"
+                size="lg"
+            >
+                New chat
+            </Button>
+            <List spacing={2} w="full" h="full">
+                {displayPreviousTitles}
+            </List>
+            <Show above="md">
+                <Box
+                    borderTop="1px"
+                    borderColor="gray.300"
+                    w="full"
+                    h={24}
+                    textAlign="start"
+                    p={4}
+                >
+                    <Text fontSize="md">Made by marcemrze24</Text>
+                </Box>
+            </Show>
+        </>
+    );
 }
 
 export default Sidebar;
