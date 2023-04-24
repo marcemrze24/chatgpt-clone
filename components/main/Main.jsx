@@ -19,7 +19,6 @@ function Main(props) {
     const currentChats = previousChats?.filter(
         (previousChat) => previousChat.title === currentTitle
     );
-    console.log(currentChats);
     const displayCurrentChats = currentChats?.map((currentChat, index) => (
         <ListItem
             key={index}

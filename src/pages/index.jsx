@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
-import Main from "../components/main/Main";
-import Sidebar from "../components/sidebar/Sidebar";
+import Main from "../../components/main/Main";
+import Sidebar from "../../components/sidebar/Sidebar";
 import { useEffect, useState } from "react";
 
 function HomePage() {
@@ -19,7 +19,7 @@ function HomePage() {
             }),
         };
         try {
-            const response = await fetch("/api", options);
+            const response = await fetch("api", options);
             const data = await response.json();
             setMessage(data.choices[0].message);
         } catch (error) {
